@@ -44,7 +44,10 @@ db.bounties.update({},{$inc: {reward: 333333}})
 db.bounties.find()
 db.bounties.update({*},{$inc: {reward: 333333}})
 db.bounties.update({reward: 1},{$inc: {reward: 333333}})
-db.bounties.update({},{$inc: {reward: 333333}, {multi:true}})
 db.bounties.update({},{$inc: {reward: 333333}}, {multi:true})
-history
-tail -50 ~/.dbshell
+db.bounties.update({name: {$exists: true}}, {$mul: {reward: 2}}, {multi: true})
+db.bounties.update( {name: 'Malcolm Reynolds'}, {$push: { hunters: 'Bobba Fett'}})
+db.bounties.update( {ship: 'Waverider'}, {$push: { hunters: 'Bobba Fett'}})
+db.bounties.update({}, {$pull: {hunters: 'Dengar'}}, {multi:true})
+db.bounties.update({name: 'Han Solo'}, {$set: {lastSeen: 'yesterday'}})
+db.bounties.update({name: {$ne: 'Han Solo'}}, {$set: {lastSeen: 'last week'}}, {multi:true})
